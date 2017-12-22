@@ -1,0 +1,30 @@
+{
+    "name": "cosmonova-rnd/jwt",
+    "description": "JWT library",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Aleksandr Besedin",
+            "email": "bs@cosmonova.net"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "lcobucci/jwt": "^4@dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "CosmonovaRnD\\JWT\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CosmonovaRnD\\JWT\\Test\\": "test/"
+        }
+    }
+}
