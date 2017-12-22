@@ -22,8 +22,8 @@ class BuilderTest extends TestCase
 
     private function loadKey()
     {
-        $key        = file_get_contents(__DIR__ . '/key.pem');
-        $passphrase = file_get_contents(__DIR__ . '/passphrase.txt');
+        $key        = file_get_contents(__DIR__ . '/../key.pem');
+        $passphrase = file_get_contents(__DIR__ . '/../passphrase.txt');
 
         $this->key = new SignKey($key, $passphrase);
     }
