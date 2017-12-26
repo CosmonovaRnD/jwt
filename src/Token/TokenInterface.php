@@ -89,6 +89,16 @@ interface TokenInterface
     /**
      * @return null|string
      */
+    public function user(): ?string;
+
+    /**
+     * @return array
+     */
+    public function roles(): array;
+
+    /**
+     * @return null|string
+     */
     public function signature(): ?string;
 
     /**

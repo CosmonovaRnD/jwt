@@ -103,6 +103,30 @@ class Builder
     }
 
     /**
+     * @param string $user
+     *
+     * @return \CosmonovaRnD\JWT\Token\Builder
+     */
+    public function user(string $user): Builder
+    {
+        $this->claims['usr'] = $user;
+
+        return $this;
+    }
+
+    /**
+     * @param array $roles
+     *
+     * @return \CosmonovaRnD\JWT\Token\Builder
+     */
+    public function roles(array $roles): Builder
+    {
+        $this->claims['roles'] = \join(',', $roles);
+
+        return $this;
+    }
+
+    /**
      * @param string $name
      * @param        $value
      *

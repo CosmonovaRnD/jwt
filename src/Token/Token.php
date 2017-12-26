@@ -148,6 +148,28 @@ final class Token implements TokenInterface
     }
 
     /**
+     * @return null|string
+     */
+    public function user(): ?string
+    {
+        return $this->token->claims()->get('usr');
+    }
+
+    /**
+     * @return array
+     */
+    public function roles(): array
+    {
+        $roles = $this->token->claims()->get('roles');
+
+        if (empty($roles)) {
+            return [];
+        }
+
+        return \explode(',', $roles);
+    }
+
+    /**
      * @return string
      */
     public function signature(): string

@@ -39,6 +39,8 @@ class BuilderTest extends TestCase
         $issuedAt   = new \DateTimeImmutable('01.01.2017 00:00:00');
         $expiresIn  = new \DateTimeImmutable('01.01.2030 00:00:00');
         $identifier = '1234';
+        $user       = 'test_username';
+        $roles      = ['ROLE_ADMIN', 'ROLE_MANAGER'];
 
         $builder = new Builder();
         $token   = $builder
@@ -47,6 +49,8 @@ class BuilderTest extends TestCase
             ->issuedAt($issuedAt)
             ->algorithm('RS256')
             ->expiresAt($expiresIn)
+            ->user($user)
+            ->roles($roles)
             ->getToken(new SignerFactory(), $this->key);
 
         $this->assertInstanceOf(TokenInterface::class, $token);
@@ -54,5 +58,7 @@ class BuilderTest extends TestCase
         $this->assertEquals($issuedAt, $token->issuedAt());
         $this->assertEquals($identifier, $token->identifier());
         $this->assertEquals($expiresIn, $token->expires());
+        $this->assertEquals($user, $token->user());
+        $this->assertEquals($roles, $token->roles());
     }
 }
