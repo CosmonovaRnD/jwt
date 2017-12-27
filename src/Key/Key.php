@@ -15,11 +15,11 @@ class Key implements KeyInterface
     /**
      * @var string
      */
-    private $content;
+    protected $content;
     /**
      * @var string
      */
-    private $passphrase;
+    protected $passphrase;
 
     /**
      * SignKey constructor.
@@ -29,7 +29,6 @@ class Key implements KeyInterface
      */
     public function __construct(string $content, string $passphrase)
     {
-
         $this->content    = $content;
         $this->passphrase = $passphrase;
     }
