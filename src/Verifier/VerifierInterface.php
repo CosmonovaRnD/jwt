@@ -21,5 +21,5 @@ interface VerifierInterface
      *
      * @return bool
      */
-    public function verify(string $expected, TokenInterface $token): bool;
+    public function verify(TokenInterface $token): bool;
 }

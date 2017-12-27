@@ -177,7 +177,7 @@ class Builder
         $encoder = new Parser();
 
         $encodedHeaders = $encoder->base64UrlEncode($encoder->jsonEncode($this->headers));
-        $encodedClaims  = $encoder->base64UrlEncode($encoder->jsonEncode($this->claims));
+        $encodedClaims  = $encoder->base64UrlEncode($encoder->jsonEncode($this->buildClaims($this->claims)));
         $key            = new Key($signKey->content(), $signKey->passphrase());
 
         $signature        = $signer->sign($encodedHeaders . '.' . $encodedClaims, $key);
@@ -188,5 +188,25 @@ class Builder
                              new DataSet($this->claims, $encodedClaims),
                              new Signature($signature, $encodedSignature)
                          ));
+    }
+
+    /**
+     * @param array $claims
+     *
+     * @return array
+     */
+    private function buildClaims(array $claims): array
+    {
+        $newClaims = [];
+
+        foreach ($claims as $key => $claim) {
+            if (in_array($key, [Claims::ISSUED_AT, Claims::EXPIRATION_TIME])) {
+                $newClaims[$key] = $claim->format('U');
+            } else {
+                $newClaims[$key] = $claim;
+            }
+        }
+
+        return $newClaims;
     }
 }

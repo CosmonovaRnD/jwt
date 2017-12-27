@@ -39,17 +39,16 @@ final class Verifier implements VerifierInterface
     }
 
     /**
-     * @param string                                 $expected
      * @param \CosmonovaRnD\JWT\Token\TokenInterface $token
      *
      * @return bool
      * @throws \CosmonovaRnD\JWT\Exception\NotSupportedAlgorithmException
      */
-    public function verify(string $expected, TokenInterface $token): bool
+    public function verify(TokenInterface $token): bool
     {
         $signer = $this->factory->create($token->algorithm());
         $key    = new Key($this->verifyKey->content(), $this->verifyKey->passphrase());
 
-        return $signer->verify($expected, $token->payload(), $key);
+        return $signer->verify($token->signature(), $token->payload(), $key);
     }
 }
