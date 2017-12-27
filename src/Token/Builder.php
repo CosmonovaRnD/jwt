@@ -61,7 +61,7 @@ class Builder
      */
     public function expiresAt(\DateTimeImmutable $expiration): Builder
     {
-        $this->claims['exp'] = $expiration->format('U');
+        $this->claims['exp'] = $expiration;
 
         return $this;
     }
@@ -85,7 +85,7 @@ class Builder
      */
     public function issuedAt(\DateTimeImmutable $issuedAt): Builder
     {
-        $this->claims['iat'] = $issuedAt->format('U');
+        $this->claims['iat'] = $issuedAt;
 
         return $this;
     }

@@ -108,9 +108,7 @@ final class Token implements TokenInterface
      */
     public function expires(): ?\DateTimeInterface
     {
-        $expires = $this->token->claims()->get('exp');
-
-        return \DateTimeImmutable::createFromFormat('U', $expires);
+        return $this->token->claims()->get('exp');
     }
 
     /**
@@ -118,9 +116,7 @@ final class Token implements TokenInterface
      */
     public function issuedAt(): ?\DateTimeInterface
     {
-        $issuedAt = $this->token->claims()->get('iat');
-
-        return \DateTimeImmutable::createFromFormat('U', $issuedAt);
+        return $this->token->claims()->get('iat');
     }
 
     /**
