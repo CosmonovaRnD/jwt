@@ -89,6 +89,11 @@ interface TokenInterface
     /**
      * @return null|string
      */
+    public function uid(): ?string;
+
+    /**
+     * @return null|string
+     */
     public function user(): ?string;
 
     /**

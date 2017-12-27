@@ -76,7 +76,7 @@ final class Token implements TokenInterface
      */
     public function type(): string
     {
-        return (string)$this->token->headers()->get('typ', 'JWT');
+        return (string)$this->token->headers()->get(Headers::TYPE, 'JWT');
     }
 
     /**
@@ -84,7 +84,7 @@ final class Token implements TokenInterface
      */
     public function algorithm(): string
     {
-        return (string)$this->token->headers()->get('alg', 'none');
+        return (string)$this->token->headers()->get(Headers::ALGORITHM, 'none');
     }
 
     /**
@@ -92,7 +92,7 @@ final class Token implements TokenInterface
      */
     public function identifier(): ?string
     {
-        return $this->token->claims()->get('jti');
+        return $this->token->claims()->get(Claims::ID);
     }
 
     /**
@@ -100,7 +100,7 @@ final class Token implements TokenInterface
      */
     public function audience(): array
     {
-        return $this->token->claims()->get('aud');
+        return $this->token->claims()->get(Claims::AUDIENCE);
     }
 
     /**
@@ -108,7 +108,7 @@ final class Token implements TokenInterface
      */
     public function expires(): ?\DateTimeInterface
     {
-        return $this->token->claims()->get('exp');
+        return $this->token->claims()->get(Claims::EXPIRATION_TIME);
     }
 
     /**
@@ -116,7 +116,7 @@ final class Token implements TokenInterface
      */
     public function issuedAt(): ?\DateTimeInterface
     {
-        return $this->token->claims()->get('iat');
+        return $this->token->claims()->get(Claims::ISSUED_AT);
     }
 
     /**
@@ -124,7 +124,7 @@ final class Token implements TokenInterface
      */
     public function issuer(): ?string
     {
-        return $this->token->claims()->get('iss');
+        return $this->token->claims()->get(Claims::ISSUER);
     }
 
     /**
@@ -132,7 +132,7 @@ final class Token implements TokenInterface
      */
     public function notBefore(): ?\DateTimeInterface
     {
-        return $this->token->claims()->get('nbf');
+        return $this->token->claims()->get(Claims::NOT_BEFORE);
     }
 
     /**
@@ -140,7 +140,15 @@ final class Token implements TokenInterface
      */
     public function subject(): ?string
     {
-        return $this->token->claims()->get('sub');
+        return $this->token->claims()->get(Claims::SUBJECT);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function uid(): ?string
+    {
+        return $this->token->claims()->get(Claims::USER_ID);
     }
 
     /**
@@ -148,7 +156,7 @@ final class Token implements TokenInterface
      */
     public function user(): ?string
     {
-        return $this->token->claims()->get('usr');
+        return $this->token->claims()->get(Claims::USER);
     }
 
     /**
@@ -156,7 +164,7 @@ final class Token implements TokenInterface
      */
     public function roles(): array
     {
-        $roles = $this->token->claims()->get('roles');
+        $roles = $this->token->claims()->get(Claims::ROLES);
 
         if (empty($roles)) {
             return [];

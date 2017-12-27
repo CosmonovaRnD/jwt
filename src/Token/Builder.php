@@ -20,7 +20,7 @@ use Lcobucci\JWT\Token\Signature;
  */
 class Builder
 {
-    private $headers = ['typ' => 'JWT', 'alg' => 'none'];
+    private $headers = [Headers::TYPE => 'JWT', Headers::ALGORITHM => 'none'];
 
     private $claims = [];
 
@@ -31,7 +31,7 @@ class Builder
      */
     public function algorithm(string $algorithmId): Builder
     {
-        $this->headers['alg'] = $algorithmId;
+        $this->headers[Headers::ALGORITHM] = $algorithmId;
 
         return $this;
     }
@@ -43,13 +43,13 @@ class Builder
      */
     public function addAudience(string $audience): Builder
     {
-        $audiences = $this->claims['aud'] ?? [];
+        $audiences = $this->claims[Claims::AUDIENCE] ?? [];
 
         if (!\in_array($audience, $audiences)) {
             $audiences[] = $audience;
         }
 
-        $this->claims['aud'] = $audiences;
+        $this->claims[Claims::AUDIENCE] = $audiences;
 
         return $this;
     }
@@ -61,7 +61,7 @@ class Builder
      */
     public function expiresAt(\DateTimeImmutable $expiration): Builder
     {
-        $this->claims['exp'] = $expiration;
+        $this->claims[Claims::EXPIRATION_TIME] = $expiration;
 
         return $this;
     }
@@ -73,7 +73,7 @@ class Builder
      */
     public function identifiedBy(string $id): Builder
     {
-        $this->claims['jti'] = $id;
+        $this->claims[Claims::ID] = $id;
 
         return $this;
     }
@@ -85,7 +85,7 @@ class Builder
      */
     public function issuedAt(\DateTimeImmutable $issuedAt): Builder
     {
-        $this->claims['iat'] = $issuedAt;
+        $this->claims[Claims::ISSUED_AT] = $issuedAt;
 
         return $this;
     }
@@ -97,7 +97,19 @@ class Builder
      */
     public function issuedBy(string $issuer): Builder
     {
-        $this->claims['iss'] = $issuer;
+        $this->claims[Claims::ISSUER] = $issuer;
+
+        return $this;
+    }
+
+    /**
+     * @param string $uid
+     *
+     * @return \CosmonovaRnD\JWT\Token\Builder
+     */
+    public function uid(string $uid): Builder
+    {
+        $this->claims[Claims::USER_ID] = $uid;
 
         return $this;
     }
@@ -109,7 +121,7 @@ class Builder
      */
     public function user(string $user): Builder
     {
-        $this->claims['usr'] = $user;
+        $this->claims[Claims::USER] = $user;
 
         return $this;
     }
@@ -121,7 +133,7 @@ class Builder
      */
     public function roles(array $roles): Builder
     {
-        $this->claims['roles'] = \join(',', $roles);
+        $this->claims[Claims::ROLES] = \join(',', $roles);
 
         return $this;
     }
@@ -161,7 +173,7 @@ class Builder
      */
     public function getToken(SignerFactory $factory, SignKey $signKey): Token
     {
-        $signer  = $factory->create($this->headers['alg']);
+        $signer  = $factory->create($this->headers[Headers::ALGORITHM]);
         $encoder = new Parser();
 
         $encodedHeaders = $encoder->base64UrlEncode($encoder->jsonEncode($this->headers));
