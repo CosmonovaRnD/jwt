@@ -39,7 +39,7 @@ class BuilderTest extends TestCase
         $issuedAt   = new \DateTimeImmutable('01.01.2017 00:00:00');
         $expiresIn  = new \DateTimeImmutable('01.01.2030 00:00:00');
         $identifier = '1234';
-        $uid = '123123123';
+        $uid        = '123123123';
         $user       = 'test_username';
         $roles      = ['ROLE_ADMIN', 'ROLE_MANAGER'];
 

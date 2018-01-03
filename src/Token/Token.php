@@ -170,7 +170,7 @@ final class Token implements TokenInterface
             return [];
         }
 
-        return \explode(',', $roles);
+        return $roles;
     }
 
     /**

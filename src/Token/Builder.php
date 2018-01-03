@@ -133,7 +133,7 @@ class Builder
      */
     public function roles(array $roles): Builder
     {
-        $this->claims[Claims::ROLES] = \join(',', $roles);
+        $this->claims[Claims::ROLES] = $roles;
 
         return $this;
     }
