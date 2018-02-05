@@ -94,6 +94,11 @@ interface TokenInterface
     /**
      * @return null|string
      */
+    public function aid(): ?string;
+
+    /**
+     * @return null|string
+     */
     public function user(): ?string;
 
     /**

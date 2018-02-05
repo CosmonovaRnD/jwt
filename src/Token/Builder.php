@@ -115,6 +115,18 @@ class Builder
     }
 
     /**
+     * @param string $aid
+     *
+     * @return \CosmonovaRnD\JWT\Token\Builder
+     */
+    public function aid(string $aid): Builder
+    {
+        $this->claims[Claims::APP_ID] = $aid;
+
+        return $this;
+    }
+
+    /**
      * @param string $user
      *
      * @return \CosmonovaRnD\JWT\Token\Builder

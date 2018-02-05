@@ -40,6 +40,7 @@ class BuilderTest extends TestCase
         $expiresIn  = new \DateTimeImmutable('01.01.2030 00:00:00');
         $identifier = '1234';
         $uid        = '123123123';
+        $aid        = '898989898';
         $user       = 'test_username';
         $roles      = ['ROLE_ADMIN', 'ROLE_MANAGER'];
 
@@ -51,6 +52,7 @@ class BuilderTest extends TestCase
             ->algorithm('RS256')
             ->expiresAt($expiresIn)
             ->uid($uid)
+            ->aid($aid)
             ->user($user)
             ->roles($roles)
             ->getToken(new SignerFactory(), $this->key);
@@ -61,6 +63,7 @@ class BuilderTest extends TestCase
         $this->assertEquals($identifier, $token->identifier());
         $this->assertEquals($expiresIn, $token->expires());
         $this->assertEquals($uid, $token->uid());
+        $this->assertEquals($aid, $token->aid());
         $this->assertEquals($user, $token->user());
         $this->assertEquals($roles, $token->roles());
     }

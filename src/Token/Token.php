@@ -154,6 +154,14 @@ final class Token implements TokenInterface
     /**
      * @return null|string
      */
+    public function aid(): ?string
+    {
+        return $this->token->claims()->get(Claims::APP_ID);
+    }
+
+    /**
+     * @return null|string
+     */
     public function user(): ?string
     {
         return $this->token->claims()->get(Claims::USER);

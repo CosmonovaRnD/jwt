@@ -28,6 +28,8 @@ class Claims
 
     public const USER_ID = 'uid';
 
+    public const APP_ID = 'aid';
+
     public const USER = 'usr';
 
     public const ROLES = 'roles';
