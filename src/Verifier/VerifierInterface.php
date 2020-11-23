@@ -16,7 +16,6 @@ use CosmonovaRnD\JWT\Token\TokenInterface;
 interface VerifierInterface
 {
     /**
-     * @param string         $expected
      * @param TokenInterface $token
      *
      * @return bool

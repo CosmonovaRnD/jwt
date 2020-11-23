@@ -3,7 +3,7 @@
     "description": "JWT library",
     "type": "library",
     "license": "MIT",
-    "version": "0.8.0",
+    "version": "0.8.1",
     "authors": [
         {
             "name": "Aleksandr Besedin",
@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^7.1",
-        "lcobucci/jwt": "^4@dev"
+        "lcobucci/jwt": "dev-master#487d0296cb89d11c023ccacc294f86802cf7bde0"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.5"
